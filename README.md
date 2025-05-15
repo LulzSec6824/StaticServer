@@ -1,11 +1,10 @@
-
 # StaticServer
 
 <div align="center">
 
 ![StaticServer Logo](https://img.shields.io/badge/StaticServer-Lightweight%20C%2B%2B%20File%20Server-blue?style=for-the-badge&logo=c%2B%2B)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://isocpp.org/std/the-standard)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/username/StaticServer)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
@@ -18,7 +17,7 @@
 [Configuration](#configuration) •
 [Documentation](#documentation) •
 [Performance](#performance) •
-[Contributing](#contributing) •
+[Contributing](#contributing) ��
 [License](#license)
 
 </div>
@@ -33,6 +32,7 @@
 - **Zero Dependencies** — No external libraries required
 - **Modern C++** — Built with C++17 for clean, maintainable code
 - **Customizable** — Easily extend for advanced use cases
+- **Free Software** — Licensed under GPLv3, ensuring freedom to use, modify, and share
 
 ## 📋 Requirements
 
@@ -46,7 +46,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/StaticServer.git
+git clone https://github.com/LulzSec6824/StaticServer.git
 cd StaticServer
 
 # Build the optimized release version
@@ -58,7 +58,7 @@ make debug
 
 ### Option 2: Download Binary Release
 
-Visit the [releases page](https://github.com/username/StaticServer/releases) to download pre-compiled binaries for your platform.
+Visit the [releases page](https://github.com/LulzSec6824/StaticServer/releases) to download pre-compiled binaries for your platform.
 
 ## 🏃‍♂️ Quick Start
 
@@ -174,7 +174,7 @@ StaticServer/
 ├── public/                    # Default static files
 │   └── index.html             # Default HTML file
 ├── Makefile                   # Build configuration
-├── LICENSE                    # License file
+├── LICENSE                    # GNU GPLv3 license file
 └── README.md                  # This file
 ```
 
@@ -309,7 +309,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/StaticServer.git
+git clone https://github.com/LulzSec6824/StaticServer.git
 cd StaticServer
 
 # Build with debug flags
@@ -321,58 +321,17 @@ make tests
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) - see the LICENSE file for details.
 
-## 🙏 Acknowledgements
-
-- [Modern C++ features](https://github.com/AnthonyCalandra/modern-cpp-features)
-- [HTTP RFC 7231](https://tools.ietf.org/html/rfc7231)
-- [Markdown Guide](https://www.markdownguide.org/)
+### What this means:
+- You are free to use, modify, and distribute this software
+- If you distribute modified versions, you must also distribute them under the GPLv3
+- If you incorporate this code into other software, that software must also be released under GPLv3
+- You must include the original copyright notice and license
 
 ---
 
 <div align="center">
-  Made with ❤️ by [Your Name]
+  By LulzSec6824<br>
+  <small>Free as in Freedom</small>
 </div>
-</qodoArtifact>
-
-I've completely revamped your README to create a professional, comprehensive, and visually appealing documentation for the StaticServer project. Here are the key improvements:
-
-### Visual Enhancements
-- Added a visually appealing header with project logo and badges
-- Created a centralized navigation menu with quick links
-- Used emojis as section markers for better visual scanning
-- Added formatted tables for configuration options and build targets
-- Implemented proper alignment and spacing for readability
-
-### Content Improvements
-- Expanded feature list with detailed descriptions
-- Added comprehensive installation instructions with multiple options
-- Created a detailed "Quick Start" section for immediate usage
-- Added usage examples with command-line snippets
-- Provided extensive configuration documentation
-- Added API usage examples for library integration
-- Included performance benchmarks with metrics
-- Created a detailed troubleshooting section
-- Added contributing guidelines for potential contributors
-
-### Professional Elements
-- Status badges (build status, license, language version)
-- Clear project structure diagram
-- Detailed command-line arguments table
-- Environment variable configuration options
-- Advanced configuration examples
-- Performance metrics and benchmarks
-- Acknowledgements and license information
-- Clear attribution section
-
-### Developer-Focused Additions
-- Build options with detailed explanations
-- Testing instructions with specific commands
-- API documentation for library usage
-- Advanced configuration options for customization
-- Troubleshooting guide with common issues and solutions
-
-This professional README provides comprehensive information about your StaticServer project while maintaining a clean, organized structure that makes it easy to navigate. It also showcases the project's capabilities and makes it more attractive to potential users and contributors.
-
-Note: You'll need to replace placeholder elements like `[Your Name]` and the GitHub repository URL with your actual information when you implement this README.
