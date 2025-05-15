@@ -5,8 +5,8 @@
 ![StaticServer Logo](https://img.shields.io/badge/StaticServer-Lightweight%20C%2B%2B%20File%20Server-blue?style=for-the-badge&logo=c%2B%2B)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://isocpp.org/std/the-standard)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/username/StaticServer)
+[![C++11](https://img.shields.io/badge/C%2B%2B-11-blue.svg)](https://isocpp.org/std/the-standard)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/LulzSec6824/StaticServer)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 **A high-performance, lightweight HTTP static file server written in modern C++**
@@ -17,7 +17,7 @@
 [Configuration](#configuration) •
 [Documentation](#documentation) •
 [Performance](#performance) •
-[Contributing](#contributing) ��
+[Contributing](#contributing) •
 [License](#license)
 
 </div>
@@ -27,16 +27,15 @@
 - **High Performance** — Optimized C++ implementation with minimal overhead
 - **Easy Configuration** — Simple setup with sensible defaults
 - **Content Type Support** — Automatic MIME type detection for common file types
-- **Thread Safety** — Multi-threaded request handling for concurrent connections
 - **Cross-Platform** — Works on Linux, macOS, and other POSIX systems
 - **Zero Dependencies** — No external libraries required
-- **Modern C++** — Built with C++17 for clean, maintainable code
+- **Modern C++** — Built with C++11 for clean, maintainable code
 - **Customizable** — Easily extend for advanced use cases
 - **Free Software** — Licensed under GPLv3, ensuring freedom to use, modify, and share
 
 ## 📋 Requirements
 
-- C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 19.14+)
+- C++11 compatible compiler (GCC 7+, Clang 5+, or MSVC 19.14+)
 - POSIX-compatible operating system
 - Make build system
 
@@ -121,35 +120,12 @@ curl -O http://localhost:8080/path/to/file.txt
 | `port` | Server listening port | 8080 |
 | `root_dir` | Directory to serve files from | ./public |
 
-### Configuration File (Optional)
+### Advanced Configuration (Planned)
 
-Create a `config.json` file in the same directory as the executable:
-
-```json
-{
-  "port": 8080,
-  "root_directory": "./public",
-  "index_files": ["index.html", "index.htm"],
-  "cache_control": true,
-  "cache_max_age": 3600,
-  "log_level": "info"
-}
-```
-
-### Environment Variables
-
-You can also configure the server using environment variables:
-
-```bash
-# Set custom port
-export STATIC_SERVER_PORT=3000
-
-# Set custom root directory
-export STATIC_SERVER_ROOT="/var/www/html"
-
-# Start the server with these settings
-./static_server
-```
+Future releases will support additional configuration options through:
+- Configuration files (JSON format)
+- Environment variables
+- Extended runtime options
 
 ## 📂 Project Structure
 
@@ -159,13 +135,11 @@ StaticServer/
 │   ├── server.h               # Server class declaration
 │   ├── config.h               # Configuration structure
 │   ├── file_utils.h           # File utility functions
-│   └── mime_types.h           # MIME type mapping
+│   └── license_header.h       # License header template
 ├── src/                       # Source files
 │   ├── main.cpp               # Entry point
 │   ├── server.cpp             # Server implementation
-│   ├── config.cpp             # Configuration handling
-│   ├── file_utils.cpp         # File utilities implementation
-│   └── mime_types.cpp         # MIME type detection
+│   └── file_utils.cpp         # File utilities implementation
 ├── tests/                     # Test files
 │   ├── test_config.cpp        # Configuration tests
 │   ├── test_file_utils.cpp    # File utilities tests
@@ -218,36 +192,35 @@ If you want to use StaticServer as a library in your own C++ project, you can in
 
 ```cpp
 #include "include/server.h"
+#include "include/config.h"
 
 int main() {
     // Create a custom server configuration
-    Configuration config;
+    ServerConfig config;
     config.port = 8080;
-    config.rootDirectory = "./web_files";
+    config.root_directory = "./web_files";
     
     // Initialize and start the server
-    Server server(config);
+    StaticFileServer server(config);
     server.start();
     
     return 0;
 }
 ```
 
-### Advanced Configuration Options
+> **Note:** When using StaticServer in your project, you must comply with the terms of the GNU General Public License v3.0, which requires derivative works to also be licensed under the GPLv3.
 
-For more advanced usage, you can customize the server behavior:
+### Future Configuration Options (Planned)
 
 ```cpp
-Configuration config;
+// These options are planned for future releases
+ServerConfig config;
 config.port = 8080;
-config.rootDirectory = "./public";
-config.indexFiles = {"index.html", "index.htm", "default.html"};
-config.enableCaching = true;
-config.cacheControlMaxAge = 3600; // 1 hour
-config.logLevel = LogLevel::Debug;
-
-Server server(config);
-server.start();
+config.root_directory = "./public";
+config.index_files = {"index.html", "index.htm", "default.html"}; // Planned feature
+config.enable_caching = true; // Planned feature
+config.cache_control_max_age = 3600; // 1 hour - Planned feature
+config.log_level = LogLevel::Debug; // Planned feature
 ```
 
 ## 🔄 Build Options
