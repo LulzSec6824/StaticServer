@@ -303,8 +303,3 @@ This project is licensed under the [GNU General Public License v3.0](https://www
 - You must include the original copyright notice and license
 
 ---
-
-<div align="center">
-  By LulzSec6824<br>
-  <small>Free as in Freedom</small>
-</div>
