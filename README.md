@@ -27,7 +27,7 @@
 - **High Performance** — Optimized C++ implementation with minimal overhead
 - **Easy Configuration** — Simple setup with sensible defaults
 - **Content Type Support** — Automatic MIME type detection for common file types
-- **Cross-Platform** — Works on Linux, macOS, and other POSIX systems
+- **Cross-Platform** — Works on Linux, macOS, and Windows systems
 - **Zero Dependencies** — No external libraries required
 - **Modern C++** — Built with C++11 for clean, maintainable code
 - **Customizable** — Easily extend for advanced use cases
@@ -36,26 +36,45 @@
 ## 📋 Requirements
 
 - C++11 compatible compiler (GCC 7+, Clang 5+, or MSVC 19.14+)
-- POSIX-compatible operating system
-- Make build system
+- CMake 3.10 or newer
+- Operating system: Linux, macOS, or Windows
+- pthread library (on Unix systems)
 
 ## 🔧 Installation
 
-### Option 1: Clone and Build
+### Option 1: Clone and Build with build.sh (Recommended)
 
 ```bash
 # Clone the repository
 git clone https://github.com/LulzSec6824/StaticServer.git
 cd StaticServer
 
+# Make build script executable
+chmod +x build.sh
+
 # Build the optimized release version
-make release
+./build.sh
 
 # Alternatively, build with debug symbols
-make debug
+./build.sh --debug
 ```
 
-### Option 2: Download Binary Release
+### Option 2: Manual CMake Build
+
+```bash
+# Clone the repository
+git clone https://github.com/LulzSec6824/StaticServer.git
+cd StaticServer
+
+# Create build directory and configure
+mkdir -p build && cd build
+cmake ..
+
+# Build
+cmake --build . --config Release
+```
+
+### Option 3: Download Binary Release
 
 Visit the [releases page](https://github.com/LulzSec6824/StaticServer/releases) to download pre-compiled binaries for your platform.
 
@@ -64,14 +83,17 @@ Visit the [releases page](https://github.com/LulzSec6824/StaticServer/releases) 
 After building the project, you can start the server immediately:
 
 ```bash
-# Start with default settings (port 8080, serving from ./public)
-./static_server
+# Build and run in one command
+./build.sh --run
+
+# Or run the compiled binary directly
+./build/bin/static_server
 
 # Start on custom port
-./static_server 3000
+./build/bin/static_server 3000
 
 # Start on custom port with custom directory
-./static_server 3000 /path/to/web/files
+./build/bin/static_server 3000 /path/to/web/files
 ```
 
 Then open your browser and navigate to:
@@ -86,19 +108,19 @@ http://localhost:8080/
 Start the server and serve the default content:
 
 ```bash
-./static_server
+./build/bin/static_server
 ```
 
 ### Custom Port and Directory
 
 ```bash
-./static_server 3000 /var/www/html
+./build/bin/static_server 3000 /var/www/html
 ```
 
 ### Running in Background
 
 ```bash
-./static_server 8080 ./public > server.log 2>&1 &
+./build/bin/static_server 8080 ./public > server.log 2>&1 &
 ```
 
 ### Testing with cURL
@@ -147,7 +169,9 @@ StaticServer/
 │   └── test_integration.cpp   # Integration tests
 ├── public/                    # Default static files
 │   └── index.html             # Default HTML file
-├── Makefile                   # Build configuration
+├── CMakeLists.txt             # CMake build configuration
+├── build.sh                   # Build script
+├── BUILD.md                   # Detailed build instructions
 ├── LICENSE                    # GNU GPLv3 license file
 └── README.md                  # This file
 ```
@@ -159,6 +183,17 @@ StaticServer is designed for high performance with low resource usage:
 - **Memory Usage**: < 5MB for basic operation
 - **Concurrent Connections**: Tested with 1000+ simultaneous connections
 - **Throughput**: 10,000+ requests per second on modest hardware
+
+### Performance Tuning
+
+For maximum performance, consider using Profile-Guided Optimization:
+
+```bash
+# Build with PGO
+./build.sh --pgo-generate --run
+# Use server with typical workload
+./build.sh --pgo-use
+```
 
 ### Benchmark Results
 
@@ -175,13 +210,10 @@ StaticServer includes comprehensive tests to ensure reliability:
 
 ```bash
 # Run all tests
-make tests
+./build.sh --test
 
-# Run specific test suites
-make test_config
-make test_file_utils
-make test_server
-make test_integration
+# Run tests in debug mode
+./build.sh --debug --test
 ```
 
 ## 📝 Documentation
@@ -223,18 +255,36 @@ config.cache_control_max_age = 3600; // 1 hour - Planned feature
 config.log_level = LogLevel::Debug; // Planned feature
 ```
 
-## 🔄 Build Options
+## 🔨 Build Options
 
-The Makefile supports various build targets:
+The `build.sh` script provides a unified interface for building and running the project:
 
-| Target | Description |
-|--------|-------------|
-| `make release` | Build optimized version for production |
-| `make debug` | Build with debug symbols |
-| `make tests` | Build and run all tests |
-| `make clean` | Remove build artifacts |
-| `make run` | Build and run the server |
-| `make help` | Display all available targets |
+```bash
+# Show help
+./build.sh --help
+
+# Build optimized version
+./build.sh
+
+# Clean and rebuild
+./build.sh --clean
+
+# Build with debug symbols
+./build.sh --debug
+
+# Build and run tests
+./build.sh --test
+
+# Build and run the server
+./build.sh --run
+
+# Build with Profile-Guided Optimization
+./build.sh --pgo-generate --run
+# (use the server normally to generate profile)
+./build.sh --pgo-use
+```
+
+For more detailed build instructions, see [BUILD.md](BUILD.md).
 
 ## 🔍 Troubleshooting
 
@@ -249,7 +299,7 @@ ERROR: Could not bind to port 8080
 This usually means the port is already in use. Try a different port:
 
 ```bash
-./static_server 3000
+./build/bin/static_server 3000
 ```
 
 #### Files Not Found
@@ -257,7 +307,7 @@ This usually means the port is already in use. Try a different port:
 Ensure you're serving files from the correct directory:
 
 ```bash
-./static_server 8080 /full/path/to/files
+./build/bin/static_server 8080 /full/path/to/files
 ```
 
 #### Permissions Issues
@@ -266,6 +316,20 @@ Make sure the server has read access to the files you're trying to serve:
 
 ```bash
 chmod -R +r /path/to/web/files
+```
+
+#### Build System Issues
+
+If you encounter issues with the build:
+
+```bash
+# Clean everything and start fresh
+./build.sh --clean
+# or if build.sh doesn't work:
+rm -rf build/
+mkdir build && cd build
+cmake ..
+cmake --build .
 ```
 
 ## 🤝 Contributing
@@ -282,14 +346,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 # Clone your fork
-git clone https://github.com/LulzSec6824/StaticServer.git
+git clone https://github.com/YourUsername/StaticServer.git
 cd StaticServer
 
 # Build with debug flags
-make debug
+./build.sh --debug
 
 # Run tests to ensure everything works
-make tests
+./build.sh --test
 ```
 
 ## 📜 License
