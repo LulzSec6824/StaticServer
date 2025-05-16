@@ -284,7 +284,7 @@ The `build.sh` script provides a unified interface for building and running the 
 ./build.sh --pgo-use
 ```
 
-For more detailed build instructions, see [BUILD.md](BUILD.md).
+For more detailed build instructions, see [BUILD.md](BUILDME.md).
 
 ## 🔍 Troubleshooting
 
