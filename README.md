@@ -11,18 +11,6 @@
 
 **A high-performance, lightweight HTTP static file server written in modern C++**
 
-[Key Features](#key-features) •
-[Installation](#installation) •
-[Quick Start](#quick-start) •
-[Usage Examples](#usage-examples) •
-[Build Options](#build-options) •
-[Configuration](#configuration) •
-[Performance](#performance) •
-[Documentation](#documentation) •
-[Deployment](#deployment) •
-[Contributing](#contributing) •
-[License](#license)
-
 </div>
 
 ## 🚀 Key Features
