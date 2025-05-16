@@ -14,9 +14,12 @@
 [Key Features](#key-features) •
 [Installation](#installation) •
 [Quick Start](#quick-start) •
+[Usage Examples](#usage-examples) •
+[Build Options](#build-options) •
 [Configuration](#configuration) •
-[Documentation](#documentation) •
 [Performance](#performance) •
+[Documentation](#documentation) •
+[Deployment](#deployment) •
 [Contributing](#contributing) •
 [License](#license)
 
@@ -171,7 +174,7 @@ StaticServer/
 │   └── index.html             # Default HTML file
 ├── CMakeLists.txt             # CMake build configuration
 ├── build.sh                   # Build script
-├── BUILD.md                   # Detailed build instructions
+├── BUILDME.md                   # Detailed build instructions
 ├── LICENSE                    # GNU GPLv3 license file
 └── README.md                  # This file
 ```
@@ -284,7 +287,7 @@ The `build.sh` script provides a unified interface for building and running the 
 ./build.sh --pgo-use
 ```
 
-For more detailed build instructions, see [BUILD.md](BUILDME.md).
+For more detailed build instructions, see [BUILD.md](BUILD.md).
 
 ## 🔍 Troubleshooting
 
